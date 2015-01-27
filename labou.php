@@ -9,6 +9,7 @@ var total_wins = 0 ;
 var total_losses = 0 ; 
 var winning_return = 1 ; 
 var last_sequence ;
+var total_bet = 0 ; 
 
 function do_sequence() { 
 	seq_interval = parseFloat( document.getElementById('sequence-interval').value ) ; 
@@ -79,19 +80,21 @@ function lose() {
 function next_bet() { 
 	var winning_return = parseFloat( document.getElementById('winning-return').value ) ; 
 	var sequence = document.getElementById('sequence-stream').innerHTML ;
+	var total_bet = parseFloat( document.getElementById('total-bet').innerHTML ) ; 
 	var nb = sequence.split(', ') ; 
+	var r = 0 ; 
 	last_sequence = '' ; 
 	if( nb.length <= 2 ) { 
 		if( winning_return == 1 ) { 
-			return nb[0] ; 
+			r = parseFloat( nb[0] ) ; 
 		} else if( winning_return == 2 ) { 
-			return parseFloat(nb[0]/2).toFixed(2) ; 
+			r = parseFloat(nb[0]/2).toFixed(2) ; 
 		}
 	} else if( nb.length > 1 ) {
 		if( winning_return == 1 ) { 
 			var first = parseFloat( nb[0] ) ; 
 			var last = parseFloat( nb[(nb.length-2)] ) ; 
-			return parseFloat(first+last).toFixed(2) ;
+			r = parseFloat(first+last).toFixed(2) ;
 		} else if( winning_return == 2 ) { 
 			var total = 0 ; 
 			if( nb.length > 5 ) { // losses to recoup
@@ -107,10 +110,12 @@ function next_bet() {
 					last_sequence += nb[i] + ', ' ; 
 				}
 			}
-			return Math.ceil(parseFloat(total/2)).toFixed(2) ; 
+			r = Math.ceil(parseFloat(total/2)).toFixed(2) ; 
 		}
 	}
-	return 0 ; 
+	total_bet += parseFloat( r ).toFixed(2) ; 
+	document.getElementById('total-bet').innerHTML = total_bet ; 
+	return r ; 
 }
 
 function spins() { 
@@ -127,14 +132,14 @@ function spins() {
 <table>
 <tr>
 	<td>How much do you wanna win?</td>
-	<td><input type="text" id="how-much" name="how_much" value="1"></td>
+	<td><input type="text" id="how-much" name="how_much" value="6"></td>
 </tr>
 <tr>
 	<td>Define the arithmetic interval:</td>
-	<td><input type="text" id="sequence-interval" name="sequence_interval" value="0.2"></td>
+	<td><input type="text" id="sequence-interval" name="sequence_interval" value="1"></td>
 </tr>
 <tr>
-	<td>Define the winning return:</td>
+	<td>Inform the winning return:</td>
 	<td><input type="text" id="winning-return" name="winning_return" value="1" size="2" maxlength="2">:1</td>
 </tr>
 <tr>
@@ -179,6 +184,7 @@ function spins() {
 	<td colspan="2"><b>spins:</b><div id="spins" style="float:right;" class="div-o">0</div></td>
 	<td colspan="2"><b>wins:</b><div id="total-wins" style="float:right;" class="div-o">0</div></td>
 	<td colspan="2"><b>losses:</b><div id="total-losses" style="float:right;" class="div-o">0</div></td>
+	<td colspan="2"><b>total bet:</b><div id="total-bet" style="float:right;" class="div-o">0</div></td>
 </tr>
 </table>
 
