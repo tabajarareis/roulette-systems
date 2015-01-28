@@ -39,10 +39,12 @@ function win() {
 	new_sequence = '' ; 
 	if( nb.length > 1 ) {
 		if( winning_return == 1 ) { 
-			current_win += parseFloat( nb[0] ) ; 
+			if( nb[0] > 0 )
+				current_win += parseFloat( nb[0] ) ; 
 			nb.splice(0, 1);
 
-			current_win += parseFloat( nb[nb.length-2] ) ; 
+			if( nb[nb.length-2] > 0 )
+				current_win += parseFloat( nb[nb.length-2] ) ; 
 			nb.splice((nb.length-2), 1);
 
 			new_sequence = nb.join(', ') ; 
@@ -52,13 +54,14 @@ function win() {
 			for( var i = 0 ; i < last_seq.length ; i++ ) { 
 				for( var j in nb ) {
 				    if( nb[j] == last_seq[i] ) {
-				    	current_win += parseFloat( nb[j] ) ; 
+				    	if( nb[j] > 0 ) 
+				    		current_win += parseFloat( nb[j] ) ; 
 				        nb.splice( j, 1 ) ;
 				        break;
 					}
 				}
 			}
-			new_sequence = nb.join(', ') ; 
+			new_sequence = nb.join(', ') + ', ' ; 
 		}
 	}
 	document.getElementById('sequence-stream').innerHTML = new_sequence ; 
@@ -75,7 +78,8 @@ function lose() {
 	var nextb = document.getElementById('next-bet') ; 
 	document.getElementById('sequence-stream').innerHTML += nextb.innerHTML + ', ' ; 
 	var current_loss = parseFloat( document.getElementById('current-loss').innerHTML ) ; 
-	current_loss += parseFloat( nextb.innerHTML ) ; 
+	if( parseFloat( nextb.innerHTML ) > 0 )
+		current_loss += parseFloat( nextb.innerHTML ) ; 
 
 	nextb.innerHTML = next_bet() ; 
 
@@ -95,15 +99,18 @@ function next_bet() {
 	last_sequence = '' ; 
 	if( nb.length <= 2 ) { 
 		if( winning_return == 1 ) { 
-			r = parseFloat( nb[0] ).toFixed(2) ; 
+			if( nb[0] > 0 ) 
+				r = parseFloat( nb[0] ).toFixed(2) ; 
 		} else if( winning_return == 2 ) { 
-			r = parseFloat(nb[0]/2).toFixed(2) ; 
+			if( nb[0]/2 > 0 )
+				r = parseFloat(nb[0]/2).toFixed(2) ; 
 		}
 	} else if( nb.length > 1 ) {
 		if( winning_return == 1 ) { 
 			var first = parseFloat( nb[0] ) ; 
 			var last = parseFloat( nb[(nb.length-2)] ) ; 
-			r = parseFloat(first+last).toFixed(2) ;
+			if( first+last > 0 )
+				r = parseFloat(first+last).toFixed(2) ;
 		} else if( winning_return == 2 ) { 
 			var total = 0 ; 
 			if( nb.length > 5 ) { // losses to recoup
@@ -119,7 +126,8 @@ function next_bet() {
 					last_sequence += nb[i] + ', ' ; 
 				}
 			}
-			r = Math.ceil(parseFloat(total/2)).toFixed(2) ; 
+			if( total/2 > 0 )
+				r = Math.ceil(parseFloat(total/2)).toFixed(2) ; 
 		}
 	}
 	if( r > 0 ) { 
