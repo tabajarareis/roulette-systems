@@ -3,10 +3,11 @@ The casino always wins.
 
 With that in mind, your mission is to lose as little as possible. With discipline and luck, you can make some money before losing it again due to your negative impulses. So, always remember: the goal is to beat yourself, not the casino.
 
+
 Roulette Systems
 ====
 
-This repository implements some roulette systems as study cases, or a handful tool for a rare sort of people. 
+This repository implements some roulette systems as study cases -- or a handful tool for a rare sort of people. 
 
 Some roulette strategies are described bellow. 
 
@@ -14,11 +15,12 @@ Some roulette strategies are described bellow.
 
 Dangerous and simple, but the most famous of all roulette systems and the epitome of positive progressions. It can be described in five words: double up until you win.
 
-Designed for the Even Chances (Red-Black, High-Low, Odd-Even), the main concept behind this system is that at some point you will win, and this win will recover all your previous losses plus one unit. You will indeed win at some point, but the problem is that this win, in some cases, could take too long. In short, Martingale is the best system to use if there were no table limits and if you had unlimited bankroll, which is, tragically, unrealistic.
+Designed for the even chances (red/black, high/low, odd/even), the main concept behind this system is that at some point you will win, and this win will recover all your previous losses plus one unit. You will indeed win at some point, but the problem is that this win, in some cases, could take too long. In short, Martingale is the best system to use if there were no table limits and if you had unlimited bankroll, which is, tragically, unrealistic.
+
 
 ### Labouchere strategy
 
-Also called `Split Martingale`, `Cancellation System`, `American Cancellation`, `American Progression` and `Montante Américaine`. It is a positive progession, like Martingale, but with less risks than a geometric series. 
+Also called `Split Martingale`, `Cancellation System`, `American Cancellation`, `American Progression` and `Montante Américaine`. It is a positive progression, like Martingale, but with less risks than a geometric series. 
 
 Method: 
 

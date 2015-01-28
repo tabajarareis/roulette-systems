@@ -1,0 +1,64 @@
+
+<script type="text/javascript" src="assets/js/labouchere.js"></script>
+
+<div class="container">
+	<tt><a href="index.php">Roulette Strategies</a> > Labouchere Strategy</tt>
+	<hr>
+
+	<form class="form-horizontal">
+	<div class="bs-callout">
+ 		<div class="form-group">
+			<label class="col-xs-6 col-sm-6 col-md-6 col-lg-6 control-label">How much do you wanna win?</label>
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<input type="text" id="how-much" class="form-control 24" style="width:60px;" name="how_much" maxlength="4" value="6">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-6 col-sm-6 col-md-6 col-lg-6 control-label">Define the arithmetic interval:</label>
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<input type="text" id="sequence-interval" class="form-control" name="sequence_interval" style="width:50px;" maxlength="3" value="1">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-6 col-sm-6 col-md-6 col-lg-6 control-label">Inform the winning return:</label>
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<input type="text" id="winning-return" class="form-control pull-left" name="winning_return" style="width:50px;" maxlength="2" value="1">
+				<span class="pull-left">:1</span>
+			</div>
+		</div>
+		<div align="right">
+			<button type="button" class="btn btn-success" onClick="javascript:do_sequence();">Go!</button>
+		</div>
+		<br>
+		<div id="my-sequence" class="div-o hide well" style="margin-bottom:0px;"></div>
+	</div>
+	</form>
+
+	<div id="game-stream" class="bs-callout bs-callout-danger hxide">
+		<div id="sequence-stream" class="well div-o" style="background-color:#E0FFFF"></div>
+
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+			next bet:
+			<div id="next-bet" class="div-o form-control" style="width:80px;"></div>
+		</div>
+
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="center">
+			<button type="button" class="btn btn-lg btn-primary" onClick="javascript:win();">I Win</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn btn-lg btn-danger" onClick="javascript:lose();">I Lose</button>
+			<br><br>
+		</div>
+
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+			<table align="right" class="table" style="font-size:14px;">
+				<tr class=""><td colspan="2" align="right">spins</td><td nowrap><span id="spins">0</span></td></tr>
+				<tr class="info"><td colspan="2" align="right">wins</td><td nowrap><span id="total-wins">0</span>/<span id="current-win">0</span></td></tr>
+				<tr class="danger"><td colspan="2" align="right">losses</td><td nowrap><span id="total-losses">0</span>/<span id="current-loss">0</span></td></tr>
+				<tr class=""><td colspan="2" align="right">total bet</td><td nowrap><span id="total-bet">0</span></td></tr>
+			</table>
+		</div>
+
+		<div class="clearfix"></div>
+	</div>
+
+</div>
